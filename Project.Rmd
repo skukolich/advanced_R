@@ -1,0 +1,38 @@
+---
+title: "Project"
+author: "DR"
+date: "November 6, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Germany gdp has increased over time. Japan increased over time. Honduras had a spike in the 1970s.
+
+```{r}
+dat <- read.csv("data.csv",header = TRUE)
+head(dat)
+final_project<-subset(dat, dat$country == "Honduras"| dat$country == "Germany"| dat$country == "Japan")
+head(final_project)
+analyze <- function(countr) {
+  country_data <- subset(final_project, final_project$country == countr)
+  plot(country_data$year, country_data$gdpPercap , xlab = "Year", ylab= "gdpPercap", main=countr)
+}
+analyze("Germany") 
+analyze("Japan")   
+analyze("Honduras")
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
